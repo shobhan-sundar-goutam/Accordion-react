@@ -1,22 +1,23 @@
-import questions from "./data";
+import { useState } from "react";
 
-const Question = () => {
+const Question = ({ title, info }) => {
+  const [display, setDisplay] = useState("none");
+
   return (
-    <>
-      {questions.map((question) => {
-        const { id, title, info } = question;
-
-        return (
-          <div className="question" key={id}>
-            <header>
-              <h4>{title}</h4>
-              <button className="btn"></button>
-            </header>
-            <p>{info}</p>
-          </div>
-        );
-      })}
-    </>
+    <div className="question">
+      <header>
+        <h4>{title}</h4>
+        <button
+          className="btn"
+          onClick={() => {
+            display === "none" ? setDisplay("block") : setDisplay("none");
+          }}
+        >
+          {display === "none" ? "+" : "-"}
+        </button>
+      </header>
+      <p style={{ display }}>{info}</p>
+    </div>
   );
 };
 
